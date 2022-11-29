@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.flights.demo.model.Flight;
 import com.flights.demo.model.Trip;
 import com.flights.demo.repository.FlightRepository;
+import org.springframework.context.annotation.Bean;
 
 @Service
 public class FlightService {
@@ -22,7 +23,7 @@ public class FlightService {
 	public List<Flight> findAll(){
 		return flightRepository.findAll();
 	}
-	
+	/*
 	public List<Flight> findByOrigin(String origin){
 		return flightRepository.findByOrigin(origin);
 	}
@@ -34,6 +35,6 @@ public class FlightService {
 	public List<Flight> findByTrip(String origin, String destination, Trip trip){
 		return flightRepository.findByTrip(origin, destination, trip);
 	}
-	
+	*/
 	
 }

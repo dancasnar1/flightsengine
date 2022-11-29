@@ -3,19 +3,21 @@ package com.flights.demo.repository;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import org.springframework.data.repository.Repository;
+import org.springframework.stereotype.Repository;
+
+import com.flights.demo.model.*;
+
 import org.springframework.data.repository.query.Param;
 
-import com.flights.demo.model.Flight;
-import com.flights.demo.model.Trip;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
 
-import org.springframework.data.jpa.repository.Query;
-
-public interface FlightRepository extends Repository<Flight, Integer> {
+public interface FlightRepository extends MongoRepository<Flight, Integer> {
 	
-	@Query("SELECT * FROM Flight flight")
+	@Query("{}")
 	List<Flight> findAll();
 	
+	/*
 	String sql1 = "SELECT * FROM Flight flight WHERE flight.origin = :origin";
 	@Query(sql1)
 	List<Flight> findByOrigin(@Param("origin") String origin);
@@ -41,10 +43,12 @@ public interface FlightRepository extends Repository<Flight, Integer> {
 	List<Flight> findByLayover();
 	
 	@Query("SELECT * FROM Flight flight WHERE flight.luggage = true")
-	List<Flight> findByAllowsLuggage();
+	List<Flight> findByLuggage();
 	
 	@Query("SELECT * FROM Flight flight WHERE flight.departureTime > ?1 and flight.arrivalTime < ?2")
 	List<Flight> findBySchedule(@Param("departureTime") LocalDateTime departureTime, 
 			@Param("arrivalTime") LocalDateTime arrivalTime);
+	
+	*/
 	
 }
