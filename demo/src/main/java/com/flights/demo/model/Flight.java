@@ -163,7 +163,4 @@ public class Flight {
 		this.luggage = luggage;
 		this.price = price;
 	}
-	
-	
-	
 }

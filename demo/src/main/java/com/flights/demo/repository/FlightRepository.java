@@ -1,5 +1,6 @@
 package com.flights.demo.repository;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -17,38 +18,35 @@ public interface FlightRepository extends MongoRepository<Flight, Integer> {
 	@Query("{}")
 	List<Flight> findAll();
 	
-	/*
-	String sql1 = "SELECT * FROM Flight flight WHERE flight.origin = :origin";
-	@Query(sql1)
+	@Query("{origin: '?0'}")
 	List<Flight> findByOrigin(@Param("origin") String origin);
 	
-	String sql2 = sql1 + " and flight.destination = :destination";
-	@Query(sql2)
+	@Query("{origin: '?0', destination: '?1'}")
 	List<Flight> findByDestination(@Param("origin") String origin, @Param("destination") String destination);
 	
-	String sql3 = sql2 + " and flight.trip = :trip";
-	@Query(sql3)
+	@Query("{origin: '?0', destination: '?1', trip: '?2'}")
 	List<Flight> findByTrip(@Param("origin") String origin, @Param("destination") String destination, 
 			@Param("trip") Trip trip);
 	
-	@Query("SELECT * FROM Flight flight WHERE flight.departureTime < flight.departureTime - interval '3 day' or "
-			+ "flight.departureTime > flight.departureTime + interval '3 day' or "
-			+ "flight.departureTime = flight.departureTime")
-	List<Flight> findByDepartureTime(@Param("departureTime") LocalDateTime departureTime);
-	
-	@Query("SELECT * FROM Flight flight WHERE flight.company = :company")
-	List<Flight> findByCompany(@Param("company") String company);
-	
-	@Query("SELECT * FROM Flight flight WHERE flight.layover >= 1")
-	List<Flight> findByLayover();
-	
-	@Query("SELECT * FROM Flight flight WHERE flight.luggage = true")
-	List<Flight> findByLuggage();
-	
-	@Query("SELECT * FROM Flight flight WHERE flight.departureTime > ?1 and flight.arrivalTime < ?2")
-	List<Flight> findBySchedule(@Param("departureTime") LocalDateTime departureTime, 
-			@Param("arrivalTime") LocalDateTime arrivalTime);
-	
-	*/
+//	@Query("{origin: '?0', destination: '?1', trip: '?2', "
+//			+ "departureTime: { '$gt': { departureTimeEarlier: ISODate('?3') }, '$lt': {departureTimeLater: ISODate('?4')} }}")
+	@Query("{origin: '?0', destination: '?1', trip: '?2', "
+			+ "departureTime: { $gt: { $date:'?3' }, $lt: { $date:'?4'} }  }")
+	List<Flight> findByDepartureTime(@Param("origin") String origin, @Param("destination") String destination, 
+			@Param("trip") Trip trip, @Param("departureTimeEarlier") LocalDate departureTimeEarlier, 
+			@Param("departureTimeLater") LocalDate departureTimeLater);
+//	
+//	@Query("SELECT * FROM Flight flight WHERE flight.company = :company")
+//	List<Flight> findByCompany(@Param("company") String company);
+//	
+//	@Query("SELECT * FROM Flight flight WHERE flight.layover >= 1")
+//	List<Flight> findByLayover();
+//	
+//	@Query("SELECT * FROM Flight flight WHERE flight.luggage = true")
+//	List<Flight> findByLuggage();
+//	
+//	@Query("SELECT * FROM Flight flight WHERE flight.departureTime > ?1 and flight.arrivalTime < ?2")
+//	List<Flight> findBySchedule(@Param("departureTime") LocalDateTime departureTime, 
+//			@Param("arrivalTime") LocalDateTime arrivalTime);
 	
 }
