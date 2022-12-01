@@ -1,0 +1,39 @@
+server:
+  port: 9192
+
+
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+        - AddResponseHeader=Access-Control-Allow-Origin, *
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedHeaders: "*"
+            allowedMethods:
+            - GET
+            - POST
+      routes:
+        - id: PASSENGER-SERVICE
+          uri: lb://PASSENGER-SERVICE
+          predicates:
+          - Path=/passengers/**
+        - id: AIRPLANE-SERVICE
+          uri: lb://AIRPLANE-SERVICE
+          predicates:
+          - Path=/flights/**
+
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    hostname: localhost

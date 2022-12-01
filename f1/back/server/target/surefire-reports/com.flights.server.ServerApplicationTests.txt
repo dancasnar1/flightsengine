@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.flights.server.ServerApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 11.719 s - in com.flights.server.ServerApplicationTests

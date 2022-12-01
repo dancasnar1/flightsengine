@@ -1,0 +1,10 @@
+com\flights\demo\model\Passenger.class
+com\flights\demo\model\Flight.class
+com\flights\demo\repository\BookingRepository.class
+com\flights\demo\DemoApplication.class
+com\flights\demo\model\Trip.class
+com\flights\demo\service\FlightService.class
+com\flights\demo\controller\FlightController.class
+com\flights\demo\model\Booking.class
+com\flights\demo\repository\FlightRepository.class
+com\flights\demo\service\BookingService.class
