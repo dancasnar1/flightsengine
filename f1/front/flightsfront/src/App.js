@@ -1,12 +1,11 @@
+import React, { Component, useState } from 'react';
 import './App.css';
-import Header from './components/Header/Header'
-import Body from './components/Body/Body'
+import SearchForm from './components/SearchForm/SearchForm';
 
 function App() {
   return (
-    <div className="App">
-      <Header className="header"></Header>
-      <Body className="body"></Body>
+    <div>
+      <SearchForm />
     </div>
   );
 }

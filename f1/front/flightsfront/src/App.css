@@ -1,6 +1,19 @@
 .App {
   text-align: center;
 }
+.searchInput{
+  border:solid;
+  border-radius:10px;
+  position:relative;
+  left:10vh;
+  height:3vh;
+  width:20vh;
+  margin-top:5vh;
+  margin-bottom:10vh;
+}
+.flightElement{
+  padding-right:10px;
+}
 
 .App-logo {
   height: 40vmin;
